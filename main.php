@@ -18,30 +18,34 @@ function log()
 	echo PHP_EOL, '<br>';
 }
 
-$input = $_GET['s'];
+$notes = $_GET['s'];
 
-log('Input string: ', $input);
+$now = new \DateTime('now', new \DateTimeZone('Etc/GMT-4'));
 
-$tokenizer = new Tokenizer();
-$tokens = $tokenizer->tokenize($input);
+$result = array();
 
-log('Tokens: ', $tokens);
+foreach (explode('-----', $notes) as $input)
+{
+//	log('Input string: ', $input);
 
-$f = new CalcFactory($tokens);
+	$tokenizer = new Tokenizer();
+	$tokens = $tokenizer->tokenize($input);
 
-$period = $f->createPeriod();
-$date = $f->createDateTime(new \DateTime());
-$duration = $f->createDuration($date->getDateTime());
-$message = $f->createMessage();
+//	log('Tokens: ', $tokens);
 
-$return = array(
-	'noteToDate' => $date->getValue(),
-	'noteToLength' => $duration->getValue(),
-	'noteToRepeatEvent' => $period->getValue(),
-	'noteMessage' => $message->getValue(),
-);
+	$f = new CalcFactory($tokens);
 
-var_dump($return);
+	$period = $f->createPeriod();
+	$date = $f->createDateTime($now);
+	$duration = $f->createDuration($date->getDateTime());
+	$message = $f->createMessage();
 
+	$result[] = array(
+		'noteToDate' => $date->getValue(),
+		'noteToLength' => $duration->getValue(),
+		'noteToRepeatEvent' => $period->getValue(),
+		'noteMessage' => $message->getValue(),
+	);
+}
 
-
+echo json_encode($result);

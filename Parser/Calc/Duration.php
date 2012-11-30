@@ -36,13 +36,13 @@ class Duration
 		 * dur_min
 		 */
 		if (isset($till_hour_pm))
-			$toDate = new DateTime("{$this->now->format('Y-m-d')} {$till_hour_pm} pm");
+			$toDate = new DateTime("{$this->now->format('Y-m-d')} {$till_hour_pm} pm", $this->now->getTimezone());
 		else if (isset($till_hour_am))
-			$toDate = new DateTime("{$this->now->format('Y-m-d')} {$till_hour_am} am");
+			$toDate = new DateTime("{$this->now->format('Y-m-d')} {$till_hour_am} am", $this->now->getTimezone());
 		else if (isset($till_hour) && isset($till_min))
-			$toDate = new DateTime("{$this->now->format('Y-m-d')} {$till_hour}:{$till_min}");
+			$toDate = new DateTime("{$this->now->format('Y-m-d')} {$till_hour}:{$till_min}", $this->now->getTimezone());
 		else if (isset($till_hour) && !isset($till_min))
-			$toDate = new DateTime("{$this->now->format('Y-m-d')} {$till_hour}:00");
+			$toDate = new DateTime("{$this->now->format('Y-m-d')} {$till_hour}:00", $this->now->getTimezone());
 		else if (isset($dur_hour) && isset($dur_min))
 		{
 			$toDate = clone $this->now;
@@ -60,7 +60,7 @@ class Duration
 		}
 		else return $this->getDefaultValue();
 
-		if ($toDate < $this->now)
+		if ($toDate <= $this->now)
 			$toDate->add(new DateInterval('P1D'));
 
 		return ($toDate->format('U') - $this->now->format('U')) / 60;
