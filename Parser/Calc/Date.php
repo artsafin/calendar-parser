@@ -98,6 +98,8 @@ class Date
 			else if (isset($date_day) && $zMonthIndex !== false)
 			{
 				$realDt->setDate($realDt->format('Y'), $zMonthIndex + 1, $date_day);
+				if ($realDt <= $this->now)
+					$realDt->modify('+1 year');
 			}
 			else if (isset($rel_day_1f))
 			{
