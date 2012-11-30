@@ -15,34 +15,21 @@ class CalcFactory
 		$this->tokens = $tokens;
 	}
 
-	private function filterTokensBy($keyStart)
-	{
-		if (!is_array($keyStart)) $keyStart = array($keyStart);
 
-		$params = array();
-		foreach ($this->tokens as $k => $v)
-		{
-			foreach ($keyStart as $key)
-				if (substr($k, 0, strlen($key)) == $key)
-					$params[$k] = $v;
-		}
-
-		return $params;
-	}
 
 	public function createPeriod()
 	{
-		return new Calc\Period($this->filterTokensBy('period_'));
+		return new Calc\Period(Util::extractStartingWith('period_', $this->tokens));
 	}
 
 	public function createDateTime($relativeNow)
 	{
-		return new Calc\Date($relativeNow, $this->filterTokensBy(array('date_', 'time_', 'rel_')));
+		return new Calc\Date($relativeNow, Util::extractStartingWith(array('date_', 'time_', 'rel_'), $this->tokens));
 	}
 
 	public function createDuration($relativeNow)
 	{
-		return new Calc\Duration($relativeNow, $this->filterTokensBy(array('dur_', 'till_')));
+		return new Calc\Duration($relativeNow, Util::extractStartingWith(array('dur_', 'till_'), $this->tokens));
 	}
 
 	public function createMessage()
