@@ -9,7 +9,7 @@ Usage
 Or using code:
 
     // Used as starting point for relative timestamps
-    $now = new \DateTime('now');
+    $now = new DateTime('now');
 
     $tokenizer = new Tokenizer();
    	$tokens = $tokenizer->tokenize($input);
