@@ -34,4 +34,9 @@ class TokenMapperFactory
 	{
 		return new TokenMapper\Message($this->tokens['descr']);
 	}
+
+	public function createNodeType()
+	{
+		return new TokenMapper\NodeType($this->tokens);
+	}
 }

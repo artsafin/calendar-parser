@@ -15,6 +15,6 @@ class Message
 
 	public function getValue()
 	{
-		return $this->msg;
+		return trim($this->msg, ' -');
 	}
 }

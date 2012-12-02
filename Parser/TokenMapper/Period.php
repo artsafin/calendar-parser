@@ -1,5 +1,6 @@
 <?php
 namespace Parser\TokenMapper;
+use Parser\Util;
 
 /**
  * @author Artur.Safin <treilor@gmail.com>
@@ -16,20 +17,17 @@ class Period
 
 	private function calcValue($params)
 	{
-		$params = array_map('str_word_count', $params);
-		switch (1)
-		{
-			case $params['period_is_y']:
-				return 4;
-			case $params['period_is_q']:
-				return 3;
-			case $params['period_is_w']:
-				return 2;
-			case $params['period_is_d']:
-				return 1;
-			default:
-				return 0;
-		}
+		$zPeriodIndex = Util::getTrueIndex(
+			$params['period_is_d'],
+			$params['period_is_w'],
+			$params['period_is_q'],
+			$params['period_is_y']
+		);
+
+		if ($zPeriodIndex === false)
+			return 0;
+		else
+			return $zPeriodIndex + 1;
 	}
 
 	public function getValue()

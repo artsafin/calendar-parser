@@ -35,10 +35,13 @@ foreach (explode('-----', $notes) as $input)
 	$date = $f->createDateTime($now);
 	$duration = $f->createDuration($date->getDateTime());
 	$message = $f->createMessage();
+	$nodeType = $f->createNodeType();
 
 	$result[] = array(
 		'dateCreate' => $now->format('Y-m-d H:i:s'),
 		'dateChange' => $now->format('Y-m-d H:i:s'),
+
+		'noteType' => $nodeType->getValue(),
 		'noteToDate' => $date->getValue(),
 		'noteToLength' => $duration->getValue(),
 		'noteToRepeatEvent' => $period->getValue(),
