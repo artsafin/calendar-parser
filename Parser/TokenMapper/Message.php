@@ -1,5 +1,5 @@
 <?php
-namespace Parser\Calc;
+namespace Parser\TokenMapper;
 /**
  * @author Artur.Safin <treilor@gmail.com>
  * @date 30.11.12

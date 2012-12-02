@@ -20,20 +20,16 @@ function log()
 
 $notes = $_GET['s'];
 
-$now = new \DateTime('now', new \DateTimeZone('Etc/GMT-4'));
+$now = new \DateTime('now');
 
 $result = array();
 
 foreach (explode('-----', $notes) as $input)
 {
-//	log('Input string: ', $input);
-
 	$tokenizer = new Tokenizer();
 	$tokens = $tokenizer->tokenize($input);
 
-//	log('Tokens: ', $tokens);
-
-	$f = new CalcFactory($tokens);
+	$f = new TokenMapperFactory($tokens);
 
 	$period = $f->createPeriod();
 	$date = $f->createDateTime($now);

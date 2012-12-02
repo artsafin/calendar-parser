@@ -1,5 +1,5 @@
 <?php
-namespace Parser\Calc;
+namespace Parser\TokenMapper;
 use DateTime;
 use Parser\Util;
 use DateInterval;
@@ -26,10 +26,6 @@ class Date
 		$dateTime = $this->getDateTime();
 
 		return $dateTime->format('Y-m-d H:i:s');
-	}
-
-	private function getWeekDayIndex()
-	{
 	}
 
 	/**

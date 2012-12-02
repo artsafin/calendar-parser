@@ -1,5 +1,5 @@
 <?php
-namespace Parser\Calc;
+namespace Parser\TokenMapper;
 
 use DateTime;
 use DateInterval;

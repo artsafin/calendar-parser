@@ -11,7 +11,7 @@ Or using code:
     $tokenizer = new Tokenizer();
    	$tokens = $tokenizer->tokenize($input);
 
-   	$f = new CalcFactory($tokens);
+   	$f = new TokenMapperFactory($tokens);
 
    	$period = $f->createPeriod();
    	$date = $f->createDateTime($now);
