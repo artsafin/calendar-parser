@@ -41,6 +41,8 @@ foreach (explode('-----', $notes) as $input)
 	$message = $f->createMessage();
 
 	$result[] = array(
+		'dateCreate' => $now->format('Y-m-d H:i:s'),
+		'dateChange' => $now->format('Y-m-d H:i:s'),
 		'noteToDate' => $date->getValue(),
 		'noteToLength' => $duration->getValue(),
 		'noteToRepeatEvent' => $period->getValue(),

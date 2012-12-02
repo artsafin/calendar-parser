@@ -15,8 +15,6 @@ class CalcFactory
 		$this->tokens = $tokens;
 	}
 
-
-
 	public function createPeriod()
 	{
 		return new Calc\Period(Util::extractStartingWith('period_', $this->tokens));
