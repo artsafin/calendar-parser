@@ -25,9 +25,6 @@ Or using code:
     $nodeType = $f->createNodeType();
 
     $result[] = array(
-        'dateCreate' => $now->format('Y-m-d H:i:s'),
-        'dateChange' => $now->format('Y-m-d H:i:s'),
-
         'noteType' => $nodeType->getValue(),
         'noteToDate' => $date->getValue(),
         'noteToLength' => $duration->getValue(),
